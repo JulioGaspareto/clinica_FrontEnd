@@ -3,15 +3,14 @@ import React from 'react'
 import logo from '../../assets/images/logo-clinica.png'
 import LoginForm from '../../components/LoginForm'
 
-function login() {
+const Login = () => {
     return (
         <>
-            <div className=' flex min-h-screen bg-gray-100'>
+            <div className='flex min-h-screen bg-gray-100'>
                 <div className='hidden md:flex w-1/2 bg-gray-200 flex-col items-center justify-center p-8'>
-                    <img src={logo} alt="clinica" className='mb-6' />
-
+                    <img src={logo} alt='clinica' className='mb-6' />
                 </div>
-                <div className='flex w-full md:w-1/2 items-center justify-center P-8'>
+                <div className='flex w-full md:w-1/2 items-center justify-center p-8'>
                     <LoginForm />
                 </div>
             </div>
@@ -19,5 +18,4 @@ function login() {
     )
 }
 
-export default login
-3
+export default Login
