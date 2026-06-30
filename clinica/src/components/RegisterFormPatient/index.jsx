@@ -109,23 +109,42 @@ function RegisterFormPatient() {
 
     const maxBirthDate = yesterday.toISOString().split("T")[0]
 
+
+
+
+    const validadeDate = () => {
+        const selectedDate = new Date(formData.birthdate)
+
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+
+        if (selectedDate >= today) {
+            toast.error("A data de nascimento deve ser anterior à data atual.", {
+                autoClose: 2000,
+                hideProgressBar: true
+            })
+            return
+        }
+    }
+
     //submit form
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // const selectedDate = new Date(formData.birthdate)
 
-        // const today = new Date()
-        // today.setHours(0, 0, 0, 0)
+        const selectedDate = new Date(formData.birthdate)
 
-        // if (selectedDate >= today) {
-        //     toast.error("A data de nascimento deve ser anterior à data atual.", {
-        //         autoClose: 2000,
-        //         hideProgressBar: true
-        //     })
-        //     return
-        // }
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+
+        if (selectedDate >= today) {
+            toast.error("A data de nascimento deve ser anterior à data atual.", {
+                autoClose: 2000,
+                hideProgressBar: true
+            })
+            return
+        }
 
 
 
@@ -231,6 +250,7 @@ function RegisterFormPatient() {
                         id='birthdate'
                         value={formData.birthdate}
                         onChange={handleInputChange}
+                        onBlur={validadeDate}
                         max={maxBirthDate}
                         required
                         className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
@@ -528,7 +548,6 @@ function RegisterFormPatient() {
                         id='state'
                         value={formData.address.state}
                         onChange={handleAddressChange}
-                        disabled="true"
                         className='w-full border p-2 rounded-lg focus:ring-2 focus:ring-cyan-600 outline-none'
                     />
                 </fieldset>
